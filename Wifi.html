@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obtener Clave WiFi</title>
+    <style>
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            text-align: center;
+        }
+        label, input, button {
+            display: block;
+            margin-bottom: 20px;
+        }
+        .hidden {
+            display: none;
+        }
+        #errorMsg {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Obtener Clave WiFi</h1>
+        <form id="wifiForm">
+            <label for="instagramUsername">Nombre de Usuario de Instagram:</label>
+            <input type="text" id="instagramUsername" name="instagramUsername" required>
+            <button type="submit">Obtener Clave</button>
+        </form>
+        <p id="errorMessage" class="hidden"></p>
+        <div id="wifiKey" class="hidden">
+            <h2>¡Aquí está tu clave WiFi!</h2>
+            <p>Nombre de la red: ECOAUTO CLIENTES</p>
+            <p>Clave: <span id="wifiKeyText"></span></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('wifiForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var username = document.getElementById('instagramUsername').value;
+            // Validar el nombre de usuario de Instagram
+            if (username) {
+                // Generar la clave del WiFi 
+                var wifiKey = generarClaveWiFi();
+                // Mostrar la clave del WiFi
+                document.getElementById('wifiKeyText').textContent = wifiKey;
+                document.getElementById('wifiKey').classList.remove('hidden');
+            } else {
+                // Mostrar un mensaje de error si no se proporciona un nombre de usuario de Instagram
+                document.getElementById('errorMessage').textContent = 'Por favor, introduce tu nombre de usuario de Instagram.';
+                document.getElementById('errorMessage').classList.remove('hidden');
+            }
+        });
+
+        function generarClaveWiFi() {
+            return 'ECOAUTOMITALLER';
+        }
+    </script>
+</body>
+</html>
